@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTeksInfra — Building India's Highways of Tomorrow</title>
+  <meta name="description" content="BTeksInfra is a leading infrastructure company specializing in highway construction, renovation, and asphalt surfacing across India.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="BTeksInfra — Building India's Highways of Tomorrow">
+  <meta property="og:description" content="Experience BTeksInfra's infrastructure journey.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="BTeksInfra Final Logo-02.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/index.css?v=2">
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="BTeksInfra Final Logo-02.png">
+</head>
+<body>
+
+  <!-- ===== Site Header ===== -->
+  <header class="site-header">
+    <a href="#hero">
+      <img src="BTeksInfra Final Logo-02.png" alt="BTeksInfra Logo" class="header-logo">
+    </a>
+  </header>
+
+  <!-- ===== Hero Section ===== -->
+  <section class="hero-section" id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-content">
+      <h1 class="hero-title">BUILDING INDIA'S HIGHWAYS OF TOMORROW</h1>
+      <p class="hero-subtitle">EPC | ASPHALT SURFACING | INFRASTRUCTURE</p>
+      <div class="scroll-prompt">
+        <span>Scroll to Explore</span>
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About Us: The 12-Road Circuit ===== -->
+  <section class="about-circuit" id="about">
+    <div class="circuit-container">
+      <h2 class="section-title">OUR JOURNEY</h2>
+      
+      <!-- SVG Road -->
+      <svg class="circuit-svg" viewBox="0 0 1000 2400" preserveAspectRatio="xMidYMin meet">
+        <!-- The background track -->
+        <path class="road-track" d="M 500,0 C 500,200 150,200 150,400 C 150,600 850,600 850,800 C 850,1000 150,1000 150,1200 C 150,1400 850,1400 850,1600 C 850,1800 150,1800 150,2000 C 150,2200 500,2200 500,2400" />
+        <!-- The active glowing path that draws on scroll -->
+        <path class="road-path" id="road-path" d="M 500,0 C 500,200 150,200 150,400 C 150,600 850,600 850,800 C 850,1000 150,1000 150,1200 C 150,1400 850,1400 850,1600 C 850,1800 150,1800 150,2000 C 150,2200 500,2200 500,2400" />
+      </svg>
+
+      <!-- 12 Milestones overlay -->
+      <div class="milestones-wrapper">
+        <div class="milestone" data-stop="1" style="top: 15%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">2012</div>
+            <h3>Inception</h3>
+            <p>BTeks Infra Private Limited was officially incorporated on February 29, 2012, in Hyderabad.</p>
+          </div>
+        </div>
+
+        <div class="milestone right" data-stop="2" style="top: 25%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">The Visionaries</div>
+            <h3>Founding Leadership</h3>
+            <p>Driven by the vision of Bandi Sankar Reddy, Eswara Babu Marasani, and Bandi Raveendranatha Reddy.</p>
+          </div>
+        </div>
+
+        <div class="milestone" data-stop="3" style="top: 35%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Foundation</div>
+            <h3>Building Completion</h3>
+            <p>Started operations with a strong focus on structural building completion and core infrastructure.</p>
+          </div>
+        </div>
+
+        <div class="milestone right" data-stop="4" style="top: 45%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Expansion</div>
+            <h3>EPC Services</h3>
+            <p>Expanded capabilities to full-scale Engineering, Procurement, and Construction (EPC) execution.</p>
+          </div>
+        </div>
+
+        <div class="milestone" data-stop="5" style="top: 55%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Specialization</div>
+            <h3>Asphalt Maintenance</h3>
+            <p>Pioneered advanced asphalt repair and surfacing solutions for sustainable road maintenance.</p>
+          </div>
+        </div>
+
+        <div class="milestone right" data-stop="6" style="top: 60%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Connectivity</div>
+            <h3>Minor Bridges & Culverts</h3>
+            <p>Enhanced regional connectivity by engineering robust minor bridges and critical culverts.</p>
+          </div>
+        </div>
+
+        <div class="milestone" data-stop="7" style="top: 65%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Heavy Infra</div>
+            <h3>Roads & Railways</h3>
+            <p>Executed large-scale embankments for critical road and railway infrastructure corridors.</p>
+          </div>
+        </div>
+
+        <div class="milestone right" data-stop="8" style="top: 72%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Sustainability</div>
+            <h3>Operations & Maintenance</h3>
+            <p>Dedicated O&M teams ensure long-term durability and safety of existing highway networks.</p>
+          </div>
+        </div>
+
+        <div class="milestone" data-stop="9" style="top: 78%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Aesthetics</div>
+            <h3>Median Plantation & Kerb Raising</h3>
+            <p>Beautifying highways and enhancing safety through median plantation and structural improvements.</p>
+          </div>
+        </div>
+
+        <div class="milestone right" data-stop="10" style="top: 85%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Local Impact</div>
+            <h3>Hyderabad Core</h3>
+            <p>Deepening roots in Telangana with headquarters at Kukatpally, driving local development.</p>
+          </div>
+        </div>
+
+        <div class="milestone" data-stop="11" style="top: 92%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Scaling Up</div>
+            <h3>National Ambitions</h3>
+            <p>Scaling operations and equipment fleets to handle multi-state infrastructure demands.</p>
+          </div>
+        </div>
+
+        <div class="milestone right" data-stop="12" style="top: 98%;">
+          <div class="milestone-dot"></div>
+          <div class="milestone-card">
+            <div class="milestone-year">Future</div>
+            <h3>Highways of Tomorrow</h3>
+            <p>Committed to building India's next-generation resilient, smart, and sustainable road networks.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <img src="BTeksInfra Final Logo-02.png" alt="BTeksInfra Logo" class="footer-logo">
+        <p>BTeks Infra Private Limited is a leading infrastructure and EPC company dedicated to engineering the future of India's road and highway networks.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#about">Our Journey</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><strong>Head Office:</strong></p>
+        <p>MIG 96, Phase VII, KPHB Colony,<br>Kukatpally, Hyderabad,<br>Telangana - 500072</p>
+        <p class="contact-detail"><strong>Phone:</strong> +91 8125345402</p>
+        <p class="contact-detail"><strong>Email:</strong> bteksinfra@gmail.com</p>
+        <p class="contact-detail"><strong>CIN:</strong> U45400TG2012PTC079469</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2012 - <span id="current-year"></span> BTeks Infra Private Limited. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Main Module ===== -->
+  <script type="module" src="js/main.js"></script>
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
