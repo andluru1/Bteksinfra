@@ -31,9 +31,13 @@
 
   <!-- ===== Site Header ===== -->
   <header class="site-header">
-    <a href="#hero">
+    <a href="#hero" class="logo-link">
       <img src="BTeksInfra Final Logo-02.png" alt="BTeksInfra Logo" class="header-logo">
     </a>
+    <nav class="site-nav">
+      <a href="#gallery" class="nav-link">Gallery</a>
+      <a href="#key-persons" class="nav-link">Key Persons</a>
+    </nav>
   </header>
 
   <!-- ===== Hero Section ===== -->
@@ -55,11 +59,17 @@
       <h2 class="section-title">OUR JOURNEY</h2>
       
       <!-- SVG Road -->
-      <svg class="circuit-svg" viewBox="0 0 1000 2400" preserveAspectRatio="xMidYMin meet">
+      <svg class="circuit-svg" id="desktop-svg" viewBox="0 0 1000 2400" preserveAspectRatio="none">
         <!-- The background track -->
-        <path class="road-track" d="M 500,0 C 500,200 150,200 150,400 C 150,600 850,600 850,800 C 850,1000 150,1000 150,1200 C 150,1400 850,1400 850,1600 C 850,1800 150,1800 150,2000 C 150,2200 500,2200 500,2400" />
+        <path class="road-track" id="desktop-track-bg" d="" />
         <!-- The active glowing path that draws on scroll -->
-        <path class="road-path" id="road-path" d="M 500,0 C 500,200 150,200 150,400 C 150,600 850,600 850,800 C 850,1000 150,1000 150,1200 C 150,1400 850,1400 850,1600 C 850,1800 150,1800 150,2000 C 150,2200 500,2200 500,2400" />
+        <path class="road-path" id="desktop-track" d="" />
+      </svg>
+      
+      <!-- Mobile SVG Road -->
+      <svg class="mobile-circuit-svg" id="mobile-svg" viewBox="0 0 400 1000" preserveAspectRatio="none">
+        <path class="mobile-road-track" id="mobile-track-bg" d="" />
+        <path class="mobile-road-line" id="mobile-track" d="" />
       </svg>
 
       <!-- 12 Milestones overlay -->
@@ -172,6 +182,56 @@
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Gallery Section ===== -->
+  <section class="gallery-section" id="gallery">
+    <div class="gallery-container">
+      <h2 class="section-title">PROJECT GALLERY</h2>
+      
+      <div class="gallery-path">
+        <!-- SVG Curved Line for Gallery -->
+        <svg class="gallery-svg" viewBox="0 0 1000 1200" preserveAspectRatio="none">
+          <path class="gallery-track" d="M 500,0 C 500,200 200,200 200,400 C 200,600 800,600 800,800 C 800,1000 500,1000 500,1200" />
+          <path class="gallery-line" id="gallery-line" d="M 500,0 C 500,200 200,200 200,400 C 200,600 800,600 800,800 C 800,1000 500,1000 500,1200" />
+        </svg>
+
+        <div class="gallery-items">
+          <div class="gallery-item left" style="top: 8%;">
+            <div class="gallery-dot"></div>
+            <div class="gallery-content">
+              <img src="images/highway_construction_1_1783103231381.png" alt="Highway Construction" class="gallery-img">
+              <div class="gallery-text">
+                <h3>Modern Highway Construction</h3>
+                <p>Advanced asphalt surfacing equipment deploying high-durability materials under strict quality standards.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-item right" style="top: 40%;">
+            <div class="gallery-dot"></div>
+            <div class="gallery-content">
+              <img src="images/bridge_infrastructure_2_1783103241849.png" alt="Bridge Infrastructure" class="gallery-img">
+              <div class="gallery-text">
+                <h3>Bridge & Culvert Engineering</h3>
+                <p>Robust concrete structures designed to withstand heavy loads and ensure regional connectivity.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="gallery-item left" style="top: 72%;">
+            <div class="gallery-dot"></div>
+            <div class="gallery-content">
+              <img src="images/smart_highway_3_1783103253498.png" alt="Smart Highway" class="gallery-img">
+              <div class="gallery-text">
+                <h3>Smart Highways of Tomorrow</h3>
+                <p>Finished roads featuring median plantation, sleek curves, and futuristic infrastructure elements.</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>

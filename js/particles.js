@@ -21,7 +21,7 @@ export class ParticleHero {
     
     this.assemblyProgress = 0;
     this.animationStartTime = null;
-    this.ASSEMBLY_DURATION = 4000; // 4 seconds to assemble
+    this.ASSEMBLY_DURATION = 1500; // 1.5 seconds to assemble (faster)
 
     this._resize();
     this._initParticles();
@@ -78,13 +78,13 @@ export class ParticleHero {
       img.onload = () => {
         this._logoImage = img;
         this._computeLogoPositions(img);
-        // Start assembly animation after a 1.5 second delay
-        this.animationStartTime = performance.now() + 1500;
+        // Start assembly animation after a 200ms delay (much shorter)
+        this.animationStartTime = performance.now() + 200;
         resolve();
       };
       img.onerror = () => {
         console.warn('Failed to load logo for particles');
-        this.animationStartTime = performance.now() + 1500;
+        this.animationStartTime = performance.now() + 200;
         resolve();
       };
       img.src = imagePath;
