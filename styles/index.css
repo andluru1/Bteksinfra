@@ -83,21 +83,79 @@ body {
   margin-left: auto;
 }
 
-.nav-link {
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
   font-family: var(--font-display);
+  background: transparent;
+  border: none;
   color: var(--text-main);
-  text-decoration: none;
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   letter-spacing: 0.05em;
   padding: 0.5rem 1rem;
   border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   transition: all 0.3s ease;
 }
 
-.nav-link:hover {
+.dropdown-btn:hover {
   background: rgba(59, 130, 246, 0.1);
   color: var(--brand-blue);
+}
+
+.dropdown-content {
+  position: absolute;
+  right: 0;
+  top: 120%;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  min-width: 200px;
+  box-shadow: 0 10px 30px var(--glass-shadow);
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.dropdown:hover .dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-content a {
+  font-family: var(--font-primary);
+  color: var(--text-main);
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+  transition: all 0.2s ease;
+}
+
+.dropdown-content a:last-child {
+  border-bottom: none;
+}
+
+.dropdown-content a:hover {
+  background: rgba(59, 130, 246, 0.05);
+  color: var(--brand-blue);
+  padding-left: 2rem;
 }
 
 /* ==========================================================================
@@ -264,7 +322,7 @@ body {
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  min-height: 2400px; /* matches SVG height */
+  min-height: 2800px; /* Increased to allow perfectly spaced milestones without overlaps */
 }
 
 /* SVG Road Styling */
@@ -279,19 +337,19 @@ body {
 
 .road-track {
   fill: none;
-  stroke: rgba(15, 23, 42, 0.05); /* Very subtle track on white */
-  stroke-width: 12;
+  stroke: #1e293b; /* Dark asphalt */
+  stroke-width: 14;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.road-path {
+.road-dashed {
   fill: none;
-  stroke: var(--brand-blue-light);
-  stroke-width: 6;
+  stroke: #ffffff;
+  stroke-width: 4;
+  stroke-dasharray: 15 15;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
 }
 
 .mobile-circuit-svg {
@@ -300,15 +358,15 @@ body {
 
 .mobile-road-track {
   fill: none;
-  stroke: rgba(15, 23, 42, 0.08); /* Dark gray road */
+  stroke: #1e293b; /* Dark asphalt */
   stroke-width: 20;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
-.mobile-road-line {
+.mobile-road-dashed {
   fill: none;
-  stroke: var(--brand-blue-light); /* Blue dashed line */
+  stroke: #ffffff;
   stroke-width: 4;
   stroke-dasharray: 15 15;
   stroke-linecap: round;
@@ -371,11 +429,13 @@ body {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
-  padding: 2rem;
-  border-radius: 16px;
+  padding: 0;
+  border-radius: 60px 60px 12px 12px; /* Arched milestone top */
   box-shadow: 0 10px 30px var(--glass-shadow);
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  max-width: 400px;
+  max-width: 340px;
+  overflow: hidden;
+  text-align: center !important; /* Perfect visual alignment */
 }
 
 .milestone-card:hover {
@@ -386,18 +446,20 @@ body {
 
 .milestone-year {
   font-family: var(--font-display);
-  font-size: 0.875rem;
-  color: var(--brand-cyan);
+  font-size: 0.95rem;
+  color: #ffffff;
+  background: var(--brand-blue); /* Colored header block */
   letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
+  padding: 2rem 1rem 1rem 1rem;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .milestone-card h3 {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin: 1.5rem 1.5rem 0.5rem 1.5rem;
   color: var(--text-main);
 }
 
@@ -405,6 +467,7 @@ body {
   color: var(--text-muted);
   font-size: 0.95rem;
   line-height: 1.6;
+  margin: 0 1.5rem 1.5rem 1.5rem;
 }
 
 /* ==========================================================================
@@ -610,9 +673,9 @@ body {
     position: relative !important;
     left: 0 !important;
     top: auto !important; /* Override inline top styling */
-    justify-content: flex-start !important;
-    text-align: left !important;
-    padding-left: 70px !important;
+    justify-content: center !important; /* Center card over the road */
+    text-align: center !important;
+    padding-left: 0 !important;
     padding-right: 0 !important;
     margin: 0 !important;
     opacity: 1; /* Reset for flex */
@@ -621,8 +684,8 @@ body {
   
   .milestone-card, .gallery-content {
     width: 100%;
-    max-width: 70%; /* Further reduced footprint as requested */
-    padding: 1rem; /* Further reduced padding */
+    max-width: 85%; /* Optimal width for mobile */
+    padding: 0 !important; /* Reset padding for new full-bleed header design */
   }
 
   .milestone .milestone-dot, .milestone.right .milestone-dot,

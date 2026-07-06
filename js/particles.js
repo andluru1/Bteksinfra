@@ -56,7 +56,9 @@ export class ParticleHero {
         // Free drifting speed
         vx: (Math.random() - 0.5) * 1.5,
         vy: (Math.random() - 0.5) * 1.5,
-        size: 0.8 + Math.random() * 1.2, // Smaller particles for higher resolution
+        size: window.innerWidth <= 768 
+              ? 0.4 + Math.random() * 0.4 // Much smaller for mobile clarity
+              : 0.8 + Math.random() * 1.2, // Desktop standard size
         color: FALLBACK_COLORS[Math.floor(Math.random() * FALLBACK_COLORS.length)],
         targetColor: null, // Will be sampled from the image
         targetX: this.width / 2, 

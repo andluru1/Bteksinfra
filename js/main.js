@@ -51,10 +51,8 @@ class App {
          m.style.width = `${randomWidth}%`;
        }
        
-       // Add slight random vertical offset (-2% to +2%)
-       const currentTop = parseFloat(m.style.top);
-       const randomTop = currentTop + (Math.random() * 4 - 2);
-       m.style.top = `${randomTop}%`;
+       // We removed the random vertical offset to prevent overlap.
+       // The vertical top % is set mathematically in index.html to guarantee perfect spacing.
     });
   }
 
@@ -66,9 +64,10 @@ class App {
     const container = document.querySelector('.circuit-container');
     const milestones = document.querySelectorAll('.milestone');
     const trackBg = document.getElementById('desktop-track-bg');
-    const trackLine = document.getElementById('desktop-track');
+    const trackDashed = document.getElementById('desktop-track-dashed');
+    const trackCover = document.getElementById('desktop-track-cover');
     
-    if (!svg || !container || !milestones.length || !trackBg || !trackLine) return;
+    if (!svg || !container || !milestones.length || !trackBg || !trackDashed || !trackCover) return;
     
     const containerRect = container.getBoundingClientRect();
     const containerWidth = containerRect.width;
@@ -100,7 +99,8 @@ class App {
     path += `C ${prevX},${prevY + 100} ${containerWidth/2},${containerHeight - 100} ${containerWidth/2},${containerHeight}`;
     
     trackBg.setAttribute('d', path);
-    trackLine.setAttribute('d', path);
+    trackDashed.setAttribute('d', path);
+    trackCover.setAttribute('d', path);
   }
 
   _drawMobileRoad() {
@@ -117,9 +117,10 @@ class App {
     const container = document.querySelector('.circuit-container');
     const milestones = document.querySelectorAll('.milestone');
     const trackBg = document.getElementById('mobile-track-bg');
-    const trackLine = document.getElementById('mobile-track');
+    const trackDashed = document.getElementById('mobile-track-dashed');
+    const trackCover = document.getElementById('mobile-track-cover');
     
-    if (!container || !milestones.length || !trackBg || !trackLine) return;
+    if (!container || !milestones.length || !trackBg || !trackDashed || !trackCover) return;
     
     const containerHeight = container.offsetHeight;
     // Set viewBox height to match pixel height so Y coordinates are 1:1
@@ -157,7 +158,8 @@ class App {
     path += `L 200,${containerHeight}`;
     
     trackBg.setAttribute('d', path);
-    trackLine.setAttribute('d', path);
+    trackDashed.setAttribute('d', path);
+    trackCover.setAttribute('d', path);
   }
 
   _initScrollAnimations() {
@@ -177,20 +179,20 @@ class App {
     });
 
     // 2. Animate the SVG Road (Draw effect)
-    const roadPath = document.getElementById('desktop-track');
-    if (roadPath) {
-      const length = roadPath.getTotalLength();
+    const roadCover = document.getElementById('desktop-track-cover');
+    if (roadCover) {
+      const length = roadCover.getTotalLength();
       
-      // Set up stroke-dasharray and stroke-dashoffset
-      roadPath.style.strokeDasharray = length;
-      roadPath.style.strokeDashoffset = length;
+      // Set up stroke-dasharray and stroke-dashoffset to fully cover the dashes initially
+      roadCover.style.strokeDasharray = length;
+      roadCover.style.strokeDashoffset = 0;
       
-      gsap.to(roadPath, {
-        strokeDashoffset: 0,
+      gsap.to(roadCover, {
+        strokeDashoffset: -length, // Pull back the cover to reveal dashes underneath
         ease: "none",
         scrollTrigger: {
           trigger: '#about',
-          start: 'top top', // start drawing when #about hits top of viewport
+          start: 'top 60%', // start drawing earlier when section enters viewport
           end: 'bottom bottom', // finish when #about hits bottom
           scrub: true
         }
@@ -198,20 +200,19 @@ class App {
     }
 
     // 2b. Animate Mobile SVG Road
-    const mobileRoadPath = document.getElementById('mobile-track');
-    if (mobileRoadPath) {
-      // Re-calculate length as it might change
-      const length = mobileRoadPath.getTotalLength();
+    const mobileRoadCover = document.getElementById('mobile-track-cover');
+    if (mobileRoadCover) {
+      const length = mobileRoadCover.getTotalLength();
       
-      mobileRoadPath.style.strokeDasharray = length;
-      mobileRoadPath.style.strokeDashoffset = length;
+      mobileRoadCover.style.strokeDasharray = length;
+      mobileRoadCover.style.strokeDashoffset = 0;
       
-      gsap.to(mobileRoadPath, {
-        strokeDashoffset: 0,
+      gsap.to(mobileRoadCover, {
+        strokeDashoffset: -length,
         ease: "none",
         scrollTrigger: {
           trigger: '#about',
-          start: 'top top',
+          start: 'top 60%', // start drawing earlier
           end: 'bottom bottom',
           scrub: true
         }
