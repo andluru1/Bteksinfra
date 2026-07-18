@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTeksInfra — Financial & Admin Dashboard</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles/index.css?v=2">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="BTeksInfra Final Logo-02.png">
+
+  <style>
+    body {
+      background-color: var(--bg-subtle);
+      padding-top: 100px;
+    }
+    
+    .dashboard-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px var(--glass-shadow);
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(6, 182, 212, 0.3);
+    }
+
+    .dashboard-header {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      color: var(--brand-blue);
+      text-align: center;
+      margin-bottom: 3rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .section-heading {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--text-main);
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid rgba(29, 78, 216, 0.1);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Grid Layouts */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* Text Helpers */
+    .text-sm { font-size: 0.9rem; color: var(--text-muted); }
+    .text-lg { font-size: 1.1rem; font-weight: 600; color: var(--text-main); }
+    .text-xl { font-size: 1.5rem; font-weight: 700; color: var(--brand-blue); }
+    .highlight { font-size: 2.5rem; font-weight: 800; color: var(--text-main); }
+
+    /* Tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .data-table th {
+      padding: 1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px solid var(--glass-border);
+    }
+    .data-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.05);
+      color: var(--text-main);
+    }
+    .data-table tr:hover td {
+      background: rgba(29, 78, 216, 0.02);
+    }
+    
+    .chart-container {
+      position: relative;
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Site Header ===== -->
+  <header class="site-header">
+    <a href="index.html" class="logo-link">
+      <img src="BTeksInfra Final Logo-02.png" alt="BTeksInfra Logo" class="header-logo">
+    </a>
+    <nav class="site-nav">
+      <div class="dropdown">
+        <button class="dropdown-btn">Menu 
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="dropdown-content">
+          <a href="index.html#hero">Home</a>
+          <a href="index.html#about">Our Journey</a>
+          <a href="index.html#gallery">Project Gallery</a>
+          <a href="financials.html" style="color: var(--brand-blue); font-weight: 600;">Financial Dashboard</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="dashboard-container">
+    <h1 class="dashboard-header">Financial & Administrative Dashboard</h1>
+
+    <!-- Company Overview -->
+    <div class="grid-2">
+      <div class="glass-card">
+        <h2 class="section-heading">Company Profile</h2>
+        <p class="text-sm"><strong>Headquarters:</strong> MIG, 7th phase, KPHB, Hyderabad-500072, Telangana</p>
+        <p class="text-sm" style="margin-top: 1rem;"><strong>Board of Directors:</strong><br>B. Sankar Reddy, B. Raveendranatha Reddy, M. Eswara Babu</p>
+        <p class="text-sm" style="margin-top: 1rem;"><strong>Contact:</strong> +91 8125345402 | bteksinfra@gmail.com</p>
+        <p class="text-sm"><strong>Website:</strong> www.bteksinfra.com</p>
+      </div>
+      <div class="glass-card" style="background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(29,78,216,0.1));">
+        <h2 class="section-heading">Financial Overview</h2>
+        <div class="grid-2">
+          <div style="margin-bottom: 1.5rem;">
+            <p class="text-sm uppercase tracking-wider">FY25 Operating Revenue</p>
+            <div class="highlight">₹32.5 <span style="font-size: 1rem; color: var(--text-muted);">Cr</span></div>
+          </div>
+          <div style="margin-bottom: 1.5rem;">
+            <p class="text-sm uppercase tracking-wider">Paid-Up Capital</p>
+            <div class="highlight">₹1.0 <span style="font-size: 1rem; color: var(--text-muted);">Cr</span></div>
+          </div>
+          <div>
+            <p class="text-sm uppercase tracking-wider">Total Portfolio (Contracts)</p>
+            <div class="highlight">₹240.64 <span style="font-size: 1rem; color: var(--text-muted);">Cr</span></div>
+          </div>
+          <div>
+            <p class="text-sm uppercase tracking-wider" style="color: var(--brand-blue); font-weight: bold;">Lifetime Executed Revenue</p>
+            <div class="highlight" style="color: var(--brand-blue);">₹234.76 <span style="font-size: 1rem; color: var(--text-muted);">Cr</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Charts -->
+    <div class="glass-card">
+      <h2 class="section-heading">Financial Performance (Contract vs Executed)</h2>
+      <div class="chart-container">
+        <canvas id="financialChart"></canvas>
+      </div>
+    </div>
+
+    <!-- Execution Metrics -->
+    <div class="glass-card">
+      <h2 class="section-heading">Kumarapalayam Tollways Execution Metrics</h2>
+      <div style="background: rgba(29, 78, 216, 0.05); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem; border: 1px solid rgba(29, 78, 216, 0.1);">
+        <h3 class="text-lg" style="margin-bottom: 1rem; color: var(--brand-blue);">Project Experience Certificate Details (2025-26)</h3>
+        <div class="grid-2">
+          <div>
+            <p class="text-sm"><strong>Client:</strong> NHAI, PIU Salem</p>
+            <p class="text-sm"><strong>Concessionaire:</strong> M/s. Kumarapalayam Tollways Limited</p>
+            <p class="text-sm"><strong>Independent Engineer:</strong> M/s. Theme Engineering Services Pvt. Ltd.</p>
+          </div>
+          <div>
+            <p class="text-sm"><strong>Agreement Date:</strong> 20-06-2025</p>
+            <p class="text-sm"><strong>Commencement:</strong> 17-07-2025</p>
+            <p class="text-sm"><strong>Actual Completion:</strong> 31-05-2026</p>
+          </div>
+        </div>
+      </div>
+      <div style="overflow-x: auto;">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Material / Activity</th>
+              <th>Unit</th>
+              <th>Phase 1 (2021-22)</th>
+              <th>Phase 2 (2025-26)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Earthen Shoulders</strong></td>
+              <td>Cum</td>
+              <td>13,901</td>
+              <td style="font-weight: bold; color: var(--brand-blue);">15,132.22</td>
+            </tr>
+            <tr>
+              <td><strong>Tack Coat</strong></td>
+              <td>Sqm</td>
+              <td>1,190,964</td>
+              <td style="font-weight: bold; color: var(--brand-blue);">1,383,337.891</td>
+            </tr>
+            <tr>
+              <td><strong>Bituminous Concrete (BC)</strong></td>
+              <td>Cum</td>
+              <td>44,841</td>
+              <td style="font-weight: bold; color: var(--brand-blue);">51,441.434</td>
+            </tr>
+            <tr>
+              <td><strong>Scarification by Milling</strong></td>
+              <td>Sqm</td>
+              <td>34,162</td>
+              <td style="font-weight: bold; color: var(--brand-blue);">70,086.040</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom: 2rem;">
+      <div class="glass-card" style="margin-bottom: 0;">
+        <p class="text-sm">Pavement Marking</p>
+        <div class="text-xl">53,916 <span style="font-size: 1rem; font-weight: normal; color: var(--text-muted);">Sqm</span></div>
+      </div>
+      <div class="glass-card" style="margin-bottom: 0;">
+        <p class="text-sm">Kerbs & Crash Barrier Painting</p>
+        <div class="text-xl">45,670 <span style="font-size: 1rem; font-weight: normal; color: var(--text-muted);">Sqm</span></div>
+      </div>
+      <div class="glass-card" style="margin-bottom: 0;">
+        <p class="text-sm">Road Studs Fixed</p>
+        <div class="text-xl">20,000 <span style="font-size: 1rem; font-weight: normal; color: var(--text-muted);">Nos.</span></div>
+      </div>
+    </div>
+
+    <!-- Asset Tracker -->
+    <div class="glass-card">
+      <h2 class="section-heading">Asset & Hardware Tracker</h2>
+      <h3 class="text-lg" style="margin-bottom: 1rem;">Major Equipment</h3>
+      <div class="grid-3">
+        <div style="padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px;">
+          <strong style="color: var(--text-main);">Linnoff Hot Mix Plants</strong><br>
+          <span class="text-sm">160 TPH</span><br>
+          <span style="color: var(--brand-blue); font-weight: bold;">2 Units</span>
+        </div>
+        <div style="padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px;">
+          <strong style="color: var(--text-main);">Vogele Pavers</strong><br>
+          <span class="text-sm">9 meters</span><br>
+          <span style="color: var(--brand-blue); font-weight: bold;">3 Units</span>
+        </div>
+        <div style="padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px;">
+          <strong style="color: var(--text-main);">Dumpers</strong><br>
+          <span class="text-sm">25 T</span><br>
+          <span style="color: var(--brand-blue); font-weight: bold;">15 Units</span>
+        </div>
+        <div style="padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px;">
+          <strong style="color: var(--text-main);">Tandem Rollers</strong><br>
+          <span class="text-sm">Heavy Duty</span><br>
+          <span style="color: var(--brand-blue); font-weight: bold;">5 Units</span>
+        </div>
+        <div style="padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px;">
+          <strong style="color: var(--text-main);">Pneumatic Tyre Rollers</strong><br>
+          <span class="text-sm">Standard</span><br>
+          <span style="color: var(--brand-blue); font-weight: bold;">2 Units</span>
+        </div>
+        <div style="padding: 1rem; border: 1px solid var(--glass-border); border-radius: 8px;">
+          <strong style="color: var(--text-main);">Milling Machines</strong><br>
+          <span class="text-sm">Standard</span><br>
+          <span style="color: var(--brand-blue); font-weight: bold;">2 Units</span>
+        </div>
+      </div>
+
+      <h3 class="text-lg" style="margin-top: 2rem; margin-bottom: 1rem;">QC Lab & Support Equipment</h3>
+      <div class="grid-4">
+        <div style="text-align: center; padding: 1rem; background: rgba(6, 182, 212, 0.05); border-radius: 8px;">
+          <strong style="color: var(--brand-cyan);">Marshall Machines</strong><br>
+          <span class="text-sm">Testing</span>
+        </div>
+        <div style="text-align: center; padding: 1rem; background: rgba(6, 182, 212, 0.05); border-radius: 8px;">
+          <strong style="color: var(--brand-cyan);">Ductility Machines</strong><br>
+          <span class="text-sm">Testing</span>
+        </div>
+        <div style="text-align: center; padding: 1rem; background: rgba(6, 182, 212, 0.05); border-radius: 8px;">
+          <strong style="color: var(--brand-cyan);">DG Sets</strong><br>
+          <span class="text-sm">500 KVA</span>
+        </div>
+        <div style="text-align: center; padding: 1rem; background: rgba(6, 182, 212, 0.05); border-radius: 8px;">
+          <strong style="color: var(--brand-cyan);">Weigh Balances</strong><br>
+          <span class="text-sm">Precision</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <img src="BTeksInfra Final Logo-02.png" alt="BTeksInfra Logo" class="footer-logo">
+        <p>BTeks Infra Private Limited is a leading infrastructure and EPC company dedicated to engineering the future of India's road and highway networks.</p>
+      </div>
+      
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#about">Our Journey</a></li>
+          <li><a href="financials.html">Financial Dashboard</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-contact">
+        <h4>Contact Us</h4>
+        <p><strong>Head Office:</strong></p>
+        <p>MIG 96, Phase VII, KPHB Colony,<br>Kukatpally, Hyderabad,<br>Telangana - 500072</p>
+        <p class="contact-detail"><strong>Phone:</strong> +91 8125345402</p>
+        <p class="contact-detail"><strong>Email:</strong> bteksinfra@gmail.com</p>
+        <p class="contact-detail"><strong>CIN:</strong> U45400TG2012PTC079469</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2012 - <span id="current-year"></span> BTeks Infra Private Limited. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Chart.js implementation
+    const ctx = document.getElementById('financialChart').getContext('2d');
+    
+    const data = {
+      labels: [
+        'Kumarapalayam (21-22)', 
+        'Indore-Jhabua (21-23)', 
+        'Indore-Jhabua (23-24)', 
+        'Indore-Jhabua (24-25)', 
+        'Indore-Jhabua (25)', 
+        'Kumarapalayam (25-26)'
+      ],
+      datasets: [
+        {
+          label: 'Contract Value (Cr)',
+          data: [69.80, 27.16, 9.84, 38.11, 13.37, 82.35],
+          backgroundColor: 'rgba(6, 182, 212, 0.8)',
+          borderRadius: 4
+        },
+        {
+          label: 'Total Work Done (Cr)',
+          data: [67.09, 26.98, 9.65, 37.90, 11.34, 81.81],
+          backgroundColor: 'rgba(29, 78, 216, 0.8)',
+          borderRadius: 4
+        }
+      ]
+    };
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                return context.dataset.label + ': ₹' + context.raw + ' Cr';
+              }
+            }
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true,
+            grid: {
+              color: 'rgba(15, 23, 42, 0.05)'
+            }
+          },
+          x: {
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
